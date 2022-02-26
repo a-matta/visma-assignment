@@ -1,0 +1,16 @@
+{
+  "name": "@amrita/visma",
+  "version": "1.0.0",
+  "description": "CLI wrapper for identity management ",
+  "bin": {
+    "visma": "bin/visma.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Amrita Matta",
+  "license": "MIT",
+  "dependencies": {
+    "esm": "^3.2.25"
+  }
+}
