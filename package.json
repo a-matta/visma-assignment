@@ -6,11 +6,15 @@
     "visma": "bin/visma.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "Amrita Matta",
   "license": "MIT",
   "dependencies": {
-    "esm": "^3.2.25"
+    "esm": "^3.2.25",
+    "url-parse": "^1.5.10"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
   }
 }
