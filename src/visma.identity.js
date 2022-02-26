@@ -1,6 +1,7 @@
 "use strict";
 
 const parse = require("url-parse");
+const UUIDv4 = require("uuid-v4-validator").UUIDv4;
 
 const vismaIdentityRegEx =
   /^visma-identity:\/\/[a-z]+\?[a-z]+=[\w-]+(&[a-z]+=[\w-]+)?$/g;
@@ -30,9 +31,14 @@ module.exports = class VismaIdentity {
         }
         break;
       case "sign":
-        if (!this.parameters.documentid) {
+        const documentId = this.parameters.documentid;
+        if (!documentId) {
           throw new Error(`sign requires mandatory parameter documentid`);
         }
+        if (!UUIDv4.validate(documentId)) {
+          throw new Error(`invalid documentid = ${documentId}`);
+        }
+        console.log();
         break;
       default:
         throw new Error(`Invalid action = ${this.action}`);
