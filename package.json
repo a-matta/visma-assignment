@@ -12,7 +12,6 @@
   "license": "MIT",
   "dependencies": {
     "esm": "^3.2.25",
-    "url-parse": "^1.5.10",
     "uuid-v4-validator": "^2.0.0"
   },
   "devDependencies": {

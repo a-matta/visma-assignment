@@ -1,6 +1,5 @@
 "use strict";
 
-const parse = require("url-parse");
 const UUIDv4 = require("uuid-v4-validator").UUIDv4;
 
 const vismaIdentityRegEx =
@@ -13,12 +12,12 @@ module.exports = class VismaIdentity {
       throw new Error(`Invalid uri = ${uri}`);
     }
 
-    const result = parse(uri, true);
+    const result = new URL(uri);
 
-    this.action = result.hostname;
-    this.parameters = result.query;
+    this.action = result.host;
+    this.parameters = result.searchParams;
 
-    if (!this.parameters.source) {
+    if (!this.parameters.get("source")) {
       throw new Error(`mandatory parameter source is missing`);
     }
 
@@ -26,19 +25,18 @@ module.exports = class VismaIdentity {
       case "login":
         break;
       case "confirm":
-        if (!this.parameters.paymentnumber) {
+        if (!this.parameters.get("paymentnumber")) {
           throw new Error(`confirm requires mandatory parameter paymentnumber`);
         }
         break;
       case "sign":
-        const documentId = this.parameters.documentid;
+        const documentId = this.parameters.get("documentid");
         if (!documentId) {
           throw new Error(`sign requires mandatory parameter documentid`);
         }
         if (!UUIDv4.validate(documentId)) {
           throw new Error(`invalid documentid = ${documentId}`);
         }
-        console.log();
         break;
       default:
         throw new Error(`Invalid action = ${this.action}`);
