@@ -3,8 +3,8 @@
 import VismaIdentity from "./visma.identity";
 
 export function cli(args) {
-  console.log(args);
-  const vi = new VismaIdentity("visma-identity://login?source=severa");
+  const params = args.slice(2).join(" ");
+  const vi = new VismaIdentity(params);
   console.log("action", vi.action);
   console.log("parameters", vi.parameters);
 }
